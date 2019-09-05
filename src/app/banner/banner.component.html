@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <h3>Cart</h3>
+  <form [formGroup]="cartForm" (submit)="postBook()">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label>Categories</label>
+          <select
+            name="Categories"
+            type="text"
+            class="form-control"
+            formControlName="Categories"
+          >
+            <option>HomeAppliances</option>
+            <option>Kid wear</option>
+            <option>Electronics</option>
+            <option>Furnitures</option>
+            <option>Books</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label>Item</label>
+          <input type="text" class="form-control" formControlName="Item" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="text" class="form-control" formControlName="Quantity" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control" formControlName="Price" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <button class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- LIST THE ITEMS -->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Categories</th>
+      <th scope="col">Item</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cart of cartData; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ cart.Categories }}</td>
+      <td>{{ cart.Item }}</td>
+      <td>{{ cart.Quantity }}</td>
+      <td>{{ cart.Price }}</td>
+      <td>
+        <a routerLink="/{ cart.id }" class="btn btn-primary btn-sm">Edit</a>
+        <button (click)="deleteBook(cart.id)" class="btn btn-danger btn-sm">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
